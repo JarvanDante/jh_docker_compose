@@ -1,0 +1,145 @@
+[
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 12,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 13,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 14,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 15,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },{
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 16,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 17,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 18,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 19,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 22,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 23,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 24,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    },
+    {
+        "name": "dx_encrypt",
+        "parameter":
+        {
+            "columnIndex": 25,
+            "paras":
+            [
+                "HR_CRYPTIC_DW",
+                "1"
+            ]
+        }
+    }
+]

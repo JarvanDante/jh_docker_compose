@@ -1,0 +1,56 @@
+server {
+	listen		80;
+	#server_name	127.0.0.1;
+	server_name     i.headcount_api.com;
+
+	location / {
+	    root            /var/www/html/TME_Headcount_Api/manage/web;
+            index           index.php;
+	}
+
+	location ^~ /hc/api/v1 {
+	    alias /var/www/html/TME_Headcount_Api/manage/web;
+	    index index.php;
+	    if (!-e $request_filename) { rewrite ^ /hc/api/v1/index.php last; }
+	
+	    location ~ .php$ {
+	    if (!-f $request_filename) { return 404; }
+	        include		fastcgi_params;
+		fastcgi_param   SCRIPT_FILENAME $request_filename;
+		fastcgi_pass    phpfpm:9000;
+	    }
+    
+	}
+	
+        location ^~ /hc/foreign/v1 {
+            alias /var/www/html/TME_Headcount_Api/foreign/web;
+            index index.php;
+            if (!-e $request_filename) { rewrite ^ /hc/foreign/v1/index.php last; }
+
+            location ~ .php$ {
+            if (!-f $request_filename) { return 404; }
+                include         fastcgi_params;
+                fastcgi_param   SCRIPT_FILENAME $request_filename;
+                fastcgi_pass    phpfpm:9000;
+            }
+
+        }
+
+	error_page 500 502 503 504 /50x.html;
+	location = /50x.html {
+	    root    html;
+	}
+
+
+	location ~ \.php$ {
+            fastcgi_pass   phpfpm:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  /var/www/html/TME_Headcount_Api/manage/web$fastcgi_script_name;
+	    include        fastcgi_params;
+        }
+
+#	location ~ /\.ht {
+#            deny  all;
+#        }
+
+}

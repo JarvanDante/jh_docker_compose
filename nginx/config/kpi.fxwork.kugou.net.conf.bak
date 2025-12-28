@@ -1,0 +1,35 @@
+server {
+    listen      80;
+    server_name kpi.fxwork.kugou.net;
+    charset     utf-8;
+    
+    #access_log /data1/logs/pkpi/access_log;
+    #error_log  /data1/logs/pkpi/error_log;
+    
+    # max upload size
+    client_max_body_size 75M;   # adjust to taste
+
+    ##超时设置
+    send_timeout 600;
+ 
+    #location /download {
+    #  alias /var/www/html/kg_partners_kpi/download;
+    #}
+
+
+    location /static/images { 
+      alias /var/www/html/kg_partners_kpi/static; # your Django project's static files - amend as required
+    }
+
+    
+    location / {
+        uwsgi_pass centos:3702;
+        include    uwsgi_params; # the uwsgi_params file you installed
+        uwsgi_read_timeout            600;
+        uwsgi_send_timeout            600;
+        uwsgi_ignore_client_abort on;
+    
+    }
+    
+}
+

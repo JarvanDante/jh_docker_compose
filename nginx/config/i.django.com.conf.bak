@@ -1,0 +1,12 @@
+server {
+	listen		80;
+	#server_name	127.0.0.1;
+	server_name     i.django.com;
+   
+        location / {
+	    uwsgi_pass centos:9001;
+	    include /etc/nginx/uwsgi_params; 
+	}
+	
+
+}

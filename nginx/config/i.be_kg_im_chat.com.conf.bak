@@ -1,0 +1,80 @@
+server {
+        listen       80;
+        server_name  i.be_kg_im_chat.com 172.19.0.4;
+
+        proxy_send_timeout 300;
+        proxy_read_timeout 300;
+        proxy_connect_timeout 300;
+
+        location / {
+   proxy_set_header X-Real-IP $remote_addr;
+   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   proxy_set_header Host $http_host;
+   proxy_set_header X-NginX-Proxy true;   
+            root   /var/www/html/be_kg_im_chat/public;
+            try_files  $uri $uri/ /index.php?$query_string;
+            index  index.php index.html index.htm;
+        }
+        error_page   500 502 503 504  /50x.html;
+        #location = /50x.html {
+        #    root   html;
+        #}
+
+        location ^~ /os_h5/chat{
+                alias  /var/www/html/be_kg_im_chat/public;
+                try_files $uri $uri/ /chat/index.html;
+                index index.html;
+        }
+
+#        location ^~ /chat{
+#                alias  /Users/wjb/kugou/be_kg_im_chat/public;
+#                try_files $uri $uri/ /chat/index.html;
+#                index index.html;
+#        }
+
+
+location /report/report {
+   proxy_set_header X-Real-IP $remote_addr;
+   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+   proxy_set_header Host $http_host;
+   proxy_set_header X-NginX-Proxy true;
+                proxy_pass http://i.be_kg_im_chat.com/report;
+        }
+
+location /report {
+                proxy_pass http://172.19.0.4/report;
+        }
+
+#        location /report{
+#                alias /Users/wjb/kugou/be_kg_im_chat/public;
+#                try_files $uri $uri/ /report/index.html;
+#                index index.html;
+#        }
+
+
+
+location /websocket {
+        proxy_http_version 1.1;
+        proxy_set_header Connection "keep-alive";
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_pass http://127.0.0.1:8081;
+    }
+
+        location ~ \.php$ {
+            root           /var/www/html/be_kg_im_chat/public;
+            fastcgi_pass   phpfpm:9000;
+            fastcgi_index  index.php;
+fastcgi_connect_timeout 1200;
+fastcgi_send_timeout 1200;
+fastcgi_read_timeout 1200;
+            fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+
+        # deny access to .htaccess files, if Apache's document root
+        # concurs with nginx's one
+        #
+        location ~ /\.ht {
+            deny  all;
+        }
+    }

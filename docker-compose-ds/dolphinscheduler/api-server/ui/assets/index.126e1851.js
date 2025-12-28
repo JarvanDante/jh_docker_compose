@@ -1,0 +1,1 @@
+import{s}from"./service.ae1ed8a7.js";function o(e,t){return s({url:`/projects/${t}/executors/execute`,method:"post",data:e})}function c(e,t){return s({url:`/projects/${t}/executors/start-process-instance`,method:"post",data:e})}export{o as e,c as s};

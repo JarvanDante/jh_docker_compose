@@ -1,0 +1,36 @@
+server {
+        listen          80;
+        #server_name    127.0.0.1;
+        server_name    i.b_front.com;
+        location ~ {
+            root   /var/www/html/by/b_front/BY/dist;
+            if ($request_method = OPTIONS ) {
+                add_header Access-Control-Allow-Origin *;
+                add_header Access-Control-Allow-Headers Origin,X-Requested-With,Content-Type,Accept;
+                return 200;
+            }
+            try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        location ^~ /app/ {
+            #root                  /usr/www/b_agent/web;
+            proxy_pass            http://i.md_service.com/api/frontend/;
+
+        }
+
+
+        error_page 500 502 503 504 /50x.html;
+        location = /50x.html {
+            root    html;
+        }
+
+
+        location ~ \.php$ {
+            fastcgi_pass   phpfpm:9000;
+            fastcgi_index  index.php;
+            fastcgi_param  SCRIPT_FILENAME  /var/www/html/by/b_front/BY/dist$fastcgi_script_name;
+            include        fastcgi_params;
+        }
+
+
+}
